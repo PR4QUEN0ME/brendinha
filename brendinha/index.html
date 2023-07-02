@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pipoca doce ou Beijo na boca?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            background: url('gato.gif') fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: #800000;
+         
+            background-color: #600000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #game-container {
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        #game-button-yes {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #game-button-yes:hover {
+            background-color: #a00000;
+        }
+
+        #game-button-no {
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: top 0.5s ease, left 0.5s ease;
+        }
+
+        #game-button-no:hover {
+            background-color: #a00000;
+        }
+
+        #image-bottom-left {
+            position: absolute;
+            bottom: 1px;
+            left: 10px;
+            right: 100px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pipoca doce ou Beijo na Boca?</h1>
+
+    <div id="game-container">
+        <button id="game-button-yes" onclick="respostaSim()">Beijo</button>
+        <button id="game-button-no" onclick="reposicionarBotaoNao()">Pipoca</button>
+        <img src="fast.jpg" id="image-bottom-left" alt="Imagem no canto inferior esquerdo">
+    </div>
+
+    <script>
+        function respostaSim() {
+            alert("É Brendinha, não tem como fugir kkkkkkkk (clica no ok kkkk)");
+
+            var song = new Audio("aud/som2.mp3");
+            song.play();
+        }
+
+        function respostaNao() {
+            // Não é necessário fazer nada aqui
+        }
+
+        var gameButtonYes = document.getElementById('game-button-yes');
+        var gameButtonNo = document.getElementById('game-button-no');
+        var gameContainer = document.getElementById('game-container');
+
+        gameContainer.addEventListener('mousemove', function(event) {
+            var x = event.clientX - gameContainer.offsetLeft;
+            var y = event.clientY - gameContainer.offsetTop;
+
+            gameButtonYes.style.top = "50%";
+            gameButtonYes.style.left = "50%";
+        });
+
+        function reposicionarBotaoNao() {
+            var containerWidth = gameContainer.offsetWidth;
+            var containerHeight = gameContainer.offsetHeight;
+            var buttonWidth = gameButtonNo.offsetWidth;
+            var buttonHeight = gameButtonNo.offsetHeight;
+
+            var maxX = containerWidth - buttonWidth;
+            var maxY = containerHeight - buttonHeight;
+
+            var randomX = getRandomNumber(0, maxX);
+            var randomY = getRandomNumber(0, maxY);
+
+            gameButtonNo.style.top = randomY + 'px';
+            gameButtonNo.style.left = randomX + 'px';
+        }
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>
